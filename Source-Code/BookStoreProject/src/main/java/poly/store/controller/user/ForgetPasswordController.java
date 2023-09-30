@@ -27,7 +27,7 @@ import poly.store.service.impl.MailerServiceImpl;
 /**
  * Class de lay lai mat khau
  * 
- * @author phu-ute
+ * @author khoa-ph
  * @version 1.00
  */
 @Controller
@@ -67,7 +67,7 @@ public class ForgetPasswordController {
 			}
 			else {
 				String password = pe.encode(user.getPassword());
-				mailerService.queue(userForm.getEmail(), "Làm mới mật khẩu!", "Vui lòng click vào link này: "+ "http://localhost:8181/reset-password?code="+password+"&email="+user.getEmail() +" để reset mật khẩu.");
+				mailerService.queue(userForm.getEmail(), "Làm mới mật khẩu!", "Vui lòng click vào link này: "+ "http://localhost:8080/reset-password?code="+password+"&email="+user.getEmail() +" để reset mật khẩu.");
 			}
 		}
 

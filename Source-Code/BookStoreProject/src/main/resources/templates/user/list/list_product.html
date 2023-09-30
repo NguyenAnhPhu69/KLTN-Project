@@ -16,7 +16,7 @@
 		<div class="col-sm-12">
 			<ul class="cat-name">
 				<th:block th:each="item: ${inforCategory.listMenuOne}">
-					<li><a> [[${item.name}]]</a></li>
+					<li><a href=""> [[${item.name}]]</a></li>
 				</th:block>
 			</ul>
 		</div>
@@ -66,67 +66,62 @@
 		</div>
 	</div>
 	<div class="row category-row">
-	    <th:block th:each="item: ${listProduct.content}">
-	        <div class="product-layout product-list col-xs-12">
-	            <div class="product-thumb">
-	                <div class="image">
-	                    <a th:href="@{|/san-pham/${item.product.Namesearch}|}"> 
-	                        <img style="width: 192px; margin-top: 25px;" 
-	                            th:src="@{|/assets/images/imageProduct/${item.product.image1}|}"
-	                            alt="Boat Headphone" th:title="${item.product.name}"
-	                            class="img-responsive" /> 							
-	                        <img class="img-responsive hover-img" style="width: 192px; margin-top: 25px;"
-	                            th:src="@{|/assets/images/imageProduct/${item.product.image2}|}"
-	                            th:title="${item.product.name}" />
-	                    </a>
-	                    <th:block th:if="${item.product.quality == 0}">
-						    <div class="sale-text">
-						        <span class="section-sale" style="color: red;">Sold out!</span>
-						    </div>
+		<th:block th:each="item: ${listProduct.content}">
+			<div class="product-layout product-list col-xs-12">
+				<div class="product-thumb">
+					<div class="image">
+						<a th:href="@{|/san-pham/${item.product.Namesearch}|}"> 
+							<img style="width: 192px; margin-top: 25px;" 
+							th:src="@{|/assets/images/imageProduct/${item.product.image1}|}"
+							alt="Boat Headphone" th:title="${item.product.name}"
+							class="img-responsive" /> 							
+							<img class="img-responsive hover-img" style="width: 192px; margin-top: 25px;"
+							th:src="@{|/assets/images/imageProduct/${item.product.image2}|}"
+							th:title="${item.product.name}" />
+						</a>
+						<th:block th:if="${item.product.sales != 0}">
+							<div class="sale-text"><span class="section-sale">On Sale!</span></div>
 						</th:block>
-						<th:block th:if="${item.product.quality != 0 and item.product.sales != 0}">
-						    <div class="sale-text">
-						        <span class="section-sale">On Sale!</span>
-						    </div>
-						</th:block>
-	                </div>
-	                <div class="thumb-description clearfix">
-	                    <div class="caption">
-	                        <h4 class="product-title">
-	                            <a th:href="@{|/san-pham/${item.product.Namesearch}|}" th:text="${item.product.name}"></a>
-	                        </h4>
-	                        <p class="price">
-	                            <th:block th:if="${item.product.sales != 0}">
-	                                <span class="price-old">[[${#numbers.formatInteger(item.product.sales,3,'POINT')}]]₫</span>
-	                                <br>
-	                            </th:block>
-	                            <span>[[${#numbers.formatInteger(item.product.price,3,'POINT')}]]₫</span>
-	                        </p>
-	                        <div class="rating">
-	                            <th:block th:if="${item.totalStar != 0}">
-	                                <th:block th:each="i: ${#numbers.sequence(1, item.totalStar)}">
-	                                    <span class="fa fa-stack"><i
-	                                            class="fa fa-star fa-stack-1x"></i><i
-	                                            class="fa fa-star-o fa-stack-1x"></i></span>
-	                                </th:block>
-	                            </th:block>
-	                            <th:block th:if="${item.totalStar != 5}">
-	                                <th:block
-	                                        th:each="i: ${#numbers.sequence(1, 5 - item.totalStar)}">
-	                                    <span class="fa fa-stack"><i
-	                                            class="fa fa-star-o fa-stack-1x"></i></span>
-	                                </th:block>
-	                            </th:block>
-	                        </div>
-	                        <p class="description"></p>
-	                        <div class="btn-all">
-	                            <a th:href="@{|/san-pham/${item.product.Namesearch}|}" class="addcart" title="Xem ngay">Xem ngay</a>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </th:block>
+					</div>
+					<div class="thumb-description clearfix">
+						<div class="caption">
+							<h4 class="product-title">
+								<a th:href="@{|/san-pham/${item.product.Namesearch}|}">[[${item.product.name}]]</a>
+							</h4>
+							<p class="price">							
+								<th:block th:if="${item.product.sales != 0}">									
+									<span class="price-old">[[${#numbers.formatInteger(item.product.sales,3,'POINT')}]]₫</span>
+									<br>
+								</th:block>
+								[[${#numbers.formatInteger(item.product.price,3,'POINT')}]]₫
+							</p>
+							<div class="rating">
+								<th:block th:if="${item.totalStar != 0}">
+									<th:block th:each="i: ${#numbers.sequence(1, item.totalStar)}">
+										<span class="fa fa-stack"><i
+											class="fa fa-star fa-stack-1x"></i><i
+											class="fa fa-star-o fa-stack-1x"></i></span>
+									</th:block>
+								</th:block>
+								<th:block th:if="${item.totalStar != 5}">
+									<th:block
+										th:each="i: ${#numbers.sequence(1, 5 - item.totalStar)}">
+										<span class="fa fa-stack"><i
+											class="fa fa-star-o fa-stack-1x"></i></span>
+									</th:block>
+								</th:block>
+							</div>
+							<p class="description">[(${item.product.description.substring(0,200)})]...</p>
+							<div class="btn-all">
+								<button type="button" class="addcart" title="Mua ngay"
+									th:onclick="location.href = '/san-pham/[(${item.product.Namesearch})]'">Mua
+									ngay</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</th:block>
 	</div>
 
 	<div class="pro_pagination">

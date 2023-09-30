@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 /**
  * Class thong tin truy van cua bang Information Shop
  * 
- * @author phu-ute
+ * @author khoa-ph
  * @version 1.00
  */
 @Data

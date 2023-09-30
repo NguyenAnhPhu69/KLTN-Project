@@ -28,7 +28,7 @@ import org.springframework.security.core.userdetails.User;
 /**
  * Class dung de phan quyen cho project
  * 
- * @author phu-ute
+ * @author khoa-ph
  * @version 1.00
  */
 @Service

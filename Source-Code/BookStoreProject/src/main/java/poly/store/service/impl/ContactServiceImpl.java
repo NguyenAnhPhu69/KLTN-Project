@@ -40,13 +40,13 @@ public class ContactServiceImpl implements ContactService {
 		contact.setStatus("0");
 		dao.save(contact);
 //		send mail thanks guests
-		mailerService.queue(contactModel.getEmail(), "Thông Báo Hohaho.com", 
+		mailerService.queue(contactModel.getEmail(), "Thông Báo Fahasa.com", 
 				"Kính chào " + name +",<br>"
-				+ "Đại diện Hohaho shop xin chân thành cảm ơn bạn đã ghé qua và để lại đánh giá ý kiến cá nhân về shop. "
+				+ "Đại diện Fahasa shop xin chân thành cảm ơn bạn đã ghé qua và để lại đánh giá ý kiến cá nhân về shop. "
 				+ "Ý kiến đóng góp của bạn shop sẽ ghi nhận để góp phần phát triển shop hơn.<br>"
 				+ "<br><br>"
 				+ "Trân trọng,<br>"
-				+ "HOHAHO SHOP");
+				+ "FASAHA SHOP");
 		return contactModel;
 	}
 

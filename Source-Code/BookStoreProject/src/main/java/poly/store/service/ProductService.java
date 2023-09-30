@@ -20,7 +20,7 @@ import poly.store.model.ShowProduct;
 /**
  * Class cung cap cac dich vu thao tac voi table Products trong database
  * 
- * @author phu-ute
+ * @author KHOA-PH
  * @version 1.00
  */
 public interface ProductService {

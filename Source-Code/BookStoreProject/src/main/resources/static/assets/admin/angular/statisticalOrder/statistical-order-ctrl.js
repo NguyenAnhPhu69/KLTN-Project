@@ -104,7 +104,7 @@ app.controller("statistical-order-ctrl", function ($scope, $http) {
         var dataMyPieDay = {
           type: "pie",
           data: {
-            labels: ["Đã giao hàng", "Chờ vận chuyển", "Chờ xác nhận", "Đã hủy đơn"],
+            labels: ["Thành công", "Chờ vận chuyển", "Chờ duyệt", "Đã hủy"],
             datasets: [
               {
                 data: arrDay,
@@ -165,7 +165,7 @@ app.controller("statistical-order-ctrl", function ($scope, $http) {
         var dataMyPieMonth = {
           type: "pie",
           data: {
-            labels: ["Đã giao hàng", "Chờ vận chuyển", "Chờ xác nhận", "Đã hủy đơn"],
+            labels: ["Thành công", "Chờ vận chuyển", "Chờ duyệt", "Đã hủy"],
             datasets: [
               {
                 data: arrDay,
@@ -221,7 +221,7 @@ app.controller("statistical-order-ctrl", function ($scope, $http) {
         var dataMyPieYear = {
           type: "pie",
           data: {
-            labels: ["Đã giao hàng", "Chờ vận chuyển", "Chờ xác nhận", "Đã hủy đơn"],
+            labels: ["Thành công", "Chờ vận chuyển", "Chờ duyệt", "Đã hủy"],
             datasets: [
               {
                 data: arrDay,
@@ -285,7 +285,7 @@ app.controller("statistical-order-ctrl", function ($scope, $http) {
         var dataMyPieDay = {
           type: "pie",
           data: {
-            labels: ["Đã giao hàng", "Chờ vận chuyển", "Chờ xác nhận", "Đã hủy đơn"],
+            labels: ["Thành công", "Chờ vận chuyển", "Chờ duyệt", "Đã hủy"],
             datasets: [
               {
                 data: arrDay,

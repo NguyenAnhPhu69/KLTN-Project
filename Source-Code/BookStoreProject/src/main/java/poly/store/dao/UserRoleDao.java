@@ -18,7 +18,7 @@ import poly.store.entity.UserRole;
 /**
  * Class thuc hien truy van thong tin bang User_Role trong database
  * 
- * @author phu-ute
+ * @author khoa-ph
  * @version 1.00
  */
 public interface UserRoleDao extends JpaRepository<UserRole, Integer>{

@@ -38,9 +38,9 @@
 							<td class="text-left" style="width: 50%;"><b>Mã Đơn
 									Hàng:</b> #[[${listProduct.get(0).code}]]<br /> <b>Ngày Đặt:</b>
 								[[${listProduct.get(0).date}]]</td>
-							<td class="text-left" style="width: 50%;"><b>Phương thức thanh toán:</b>
-								<th:block th:if="${listProduct.get(0).method=='1'}">Ví PayPal</th:block>
-								<th:block th:if="${listProduct.get(0).method=='0'}">thanh toán bằng tiền mặt khi nhận hàng</th:block>
+							<td class="text-left" style="width: 50%;"><b>Thanh Toán:</b>
+								<th:block th:if="${listProduct.get(0).method=='1'}">Online khi nhận hàng</th:block>
+								<th:block th:if="${listProduct.get(0).method=='0'}">Tiền mặt khi nhận hàng</th:block>
 								<br /> <b>Vận Chuyển:</b> Shipper</td>
 						</tr>
 					</tbody>
@@ -104,7 +104,7 @@
 							<tr>
 								<td colspan="4"></td>
 								<td class="text-right"><b>Tiền Vận Chuyển</b></td>
-								<td class="text-right">[[${listProduct.get(0).address.province.equals("Hồ Chí Minh") ? "18.000" : "30.000"}]]</td>
+								<td class="text-right">50.000</td>
 								<!-- <td></td> -->
 							</tr>
 							<tr>
@@ -117,7 +117,7 @@
 							<tr>
 								<td colspan="4"></td>
 								<td class="text-right"><b>Tổng</b></td>
-								<td class="text-right">[[${#numbers.formatInteger(total + (listProduct.get(0).address.province.equals("Hồ Chí Minh") ? 18000 : 30000) - discount, 3, 'POINT')}]]</td>
+								<td class="text-right">[[${#numbers.formatInteger(total+50000-discount,3,'POINT')}]]</td>
 								<!-- <td></td> -->
 							</tr>
 						</tfoot>
@@ -136,10 +136,10 @@
 						<tr>
 							<td class="text-left">[[${listProduct.get(0).date}]]</td>
 							<td class="text-left">
-								<th:block th:if="${listProduct.get(0).status == '0'}">Chờ xác nhận</th:block>
-								<th:block th:if="${listProduct.get(0).status == '1'}">Chờ vận chuyển</th:block>
-								<th:block th:if="${listProduct.get(0).status == '2'}">Đã giao hàng</th:block>
-								<th:block th:if="${listProduct.get(0).status == '3'}">Đã hủy đơn</th:block>
+								<th:block th:if="${listProduct.get(0).status == '0'}">Chờ duyệt</th:block>
+								<th:block th:if="${listProduct.get(0).status == '1'}">Đang ship</th:block>
+								<th:block th:if="${listProduct.get(0).status == '2'}">Thành công</th:block>
+								<th:block th:if="${listProduct.get(0).status == '3'}">Đã hủy</th:block>
 							</td>
 							<td class="text-left">[[${listProduct.get(0).comment}]]</td>
 						</tr>

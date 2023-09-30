@@ -18,7 +18,7 @@ import poly.store.common.Constants;
 /**
  * Class dung de quan ly san pham
  * 
- * @author phu-ute
+ * @author khoa-ph
  * @version 1.00
  */
 @Controller

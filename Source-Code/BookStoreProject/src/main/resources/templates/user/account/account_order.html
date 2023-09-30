@@ -49,18 +49,18 @@
 								<th:block th:unless="${item.discount == null}">[[${#numbers.formatInteger(item.discount.price,3,'POINT')}]]₫</th:block>
 							</td>
 							<td class="text-right">
-								<div class="price">[[${#numbers.formatInteger(item.total + (item.province.equals("Hồ Chí Minh") ? 18000 : 30000) - (item.discount!=null?item.discount.price:0),3,'POINT')}]]₫</div>
+								<div class="price">[[${#numbers.formatInteger(item.total + 50000 - (item.discount!=null?item.discount.price:0),3,'POINT')}]]₫</div>
 							</td>
 							<td class="text-right">[[${item.date}]]</td>
 							<td class="text-right">
-								[[${item.status=='0'?'Chờ xác nhận':''}]]
-								[[${item.status=='1'?'Chờ vận chuyển':''}]]
-								[[${item.status=='2'?'Đã giao hàng':''}]]
-								[[${item.status=='3'?'Đã hủy đơn':''}]]
+								[[${item.status=='0'?'Chờ duyệt':''}]]
+								[[${item.status=='1'?'Đang ship':''}]]
+								[[${item.status=='2'?'Thành công':''}]]
+								[[${item.status=='3'?'Đã hủy':''}]]
 							</td>
 							<td class="text-right"><a th:href="@{|/account/order/invoice/${item.id}|}" data-toggle="tooltip"
 								title="Xem hóa đơn" class="btn btn-info"><i class="fa fa-eye"></i>
-							</a> <a th:href="@{|/account/order/cancel/${item.id}|}" data-toggle="tooltip" title="Hủy đơn" class="btn btn-danger" th:classappend="${(item.status=='1') || (item.status=='2') || (item.status=='3')?'disabled':''}"><i
+							</a> <a th:href="@{|/account/order/cancel/${item.id}|}" data-toggle="tooltip" title="Hủy đơn" class="btn btn-danger" th:classappend="${(item.status=='3') || (item.status=='2')?'disabled':''}"><i
 									class="fa fa-times"></i></a></td>
 						</tr>
 					</tbody>

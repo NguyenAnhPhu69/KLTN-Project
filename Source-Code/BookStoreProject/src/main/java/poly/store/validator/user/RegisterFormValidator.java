@@ -22,7 +22,7 @@ import poly.store.service.UserService;
 /**
  * Class bat loi form register.html
  * 
- * @author phu-ute
+ * @author khoa-ph
  * @version 1.00
  */
 @Component

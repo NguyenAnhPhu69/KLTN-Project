@@ -21,7 +21,7 @@ import poly.store.model.StatisticalProductDay;
 /**
  * Class thuc hien truy van thong tin bang Product trong database
  * 
- * @author phu-ute
+ * @author KHOA-PH
  * @version 1.00
  */
 public interface ProductDao extends JpaRepository<Product, Integer>{

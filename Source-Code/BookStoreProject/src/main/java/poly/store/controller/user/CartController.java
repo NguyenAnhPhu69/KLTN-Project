@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import poly.store.common.Constants;
 import poly.store.entity.Discount;
@@ -72,24 +70,22 @@ public class CartController {
 	}
 	
 	@PostMapping("/cart/update/{id}")
-	public String update(@PathVariable("id") Integer id, HttpServletRequest req, RedirectAttributes redirectAttributes) {
+	public String update(@PathVariable("id") Integer id, HttpServletRequest req) {
 		String qty = req.getParameter("quantity");	
 		ProductModel product = productService.getOneProductById(id);
 		
 		if(Integer.parseInt(qty) <= product.getQuality()) {
 			cartService.update(id, Integer.parseInt(qty));
-		} else {
-			redirectAttributes.addFlashAttribute("error", "Số lượng yêu cầu cho " + Integer.parseInt(qty) + " vượt quá số lượng hiện có.");
 		}
 		
 		return "redirect:/shop/cart";
 	}
 	
 	@RequestMapping("/cart/remove/{id}")
-	public String remove(@PathVariable("id") Integer id, HttpSession session) {
-	    cartService.remove(id);
-	    session.setAttribute("sessionProduct", cartService);
-	    return "redirect:/shop/cart";
+	public String remove(@PathVariable("id") Integer id) {
+		cartService.remove(id);	
+		sessionService.set("sessionProduct", cartService);
+		return "redirect:/shop/cart";
 	}
 	
 	@GetMapping("/shop/cart/discount")
@@ -139,7 +135,7 @@ public class CartController {
 	}
 	
 	@ModelAttribute("total")
-	public int total() {
+	public int tolal() {
 		List<CartModel> list = new ArrayList<>(cartService.getItems());
 		int total = 0;
 		for(CartModel i: list) {

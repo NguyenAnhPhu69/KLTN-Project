@@ -1,9 +1,9 @@
 /**
- * @(#)RoleDao.java 2023/06/24.
+ * @(#)RoleDao.java 2021/08/24.
  * 
- * Copyright(C) 2023 by HCMUTE TEAM.
+ * Copyright(C) 2021 by PHOENIX TEAM.
  * 
- * Last_Update 2023/06/24.
+ * Last_Update 2021/08/24.
  * Version 1.00.
  */
 package poly.store.dao;
@@ -20,7 +20,7 @@ import poly.store.entity.UserRole;
 /**
  * Class thuc hien truy van thong tin bang Role trong database
  * 
- * @author phu-ute
+ * @author khoa-ph
  * @version 1.00
  */
 public interface RoleDao extends JpaRepository<Role, Integer>{

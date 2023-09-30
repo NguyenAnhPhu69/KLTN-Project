@@ -11,6 +11,8 @@ var checkNameSearch = 0;
 var checkCategory = 0;
 var checkManufacturer = 0;
 var checkActive = 0;
+var checkDescription = 0;
+var checkSpecification = 0;
 var checkSales = 0;
 
 $(document).ready(function () {
@@ -251,6 +253,52 @@ $(document).ready(function () {
     }
     handlerButtonSave();
   });
+
+  $("#description").keyup(function () {
+    var description = this.value;
+    if (description == "") {
+      $("#description").addClass("is-invalid");
+      $("#showErrorDescription").text("Vui lòng nhập mô tả sản phẩm!");
+      checkDescription = 10;
+    } else {
+      var length = description.length;
+      var minLength = $("#description").attr("data-minlength");
+
+      if (length < minLength) {
+        $("#description").addClass("is-invalid");
+        $("#showErrorDescription").text("Mô tả phải lớn hơn 200 ký tự!");
+        checkDescription = 10;
+      } else {
+        $("#description").removeClass("is-invalid");
+        $("#showErrorDescription").text("");
+        checkDescription = 1;
+      }
+    }
+    handlerButtonSave();
+  });
+
+  $("#specification").keyup(function () {
+    var specification = this.value;
+    if (specification == "") {
+      $("#specification").addClass("is-invalid");
+      $("#showErrorSpecification").text("Vui lòng nhập thông số sản phẩm!");
+      checkSpecification = 10;
+    } else {
+      var length = specification.length;
+      var minLength = $("#specification").attr("data-minlength");
+
+      if (length < minLength) {
+        $("#specification").addClass("is-invalid");
+        $("#showErrorSpecification").text("Thông số phải lớn hơn 7 ký tự!");
+        checkSpecification = 10;
+      } else {
+        $("#specification").removeClass("is-invalid");
+        $("#showErrorSpecification").text("");
+        checkSpecification = 1;
+      }
+    }
+    handlerButtonSave();
+  });
 });
 
 function checkForm() {
@@ -268,6 +316,8 @@ function checkForm() {
   $("#manufacturer").change();
   $("#active").change();
   $("#quality").keyup();
+  $("#description").keyup();
+  $("#specification").keyup();
   return handlerButtonSave();
 }
 
@@ -287,6 +337,8 @@ function handlerButtonSave() {
     checkManufacturer !== 10 &&
     checkCategory !== 10 &&
     checkActive !== 10 &&
+    checkSpecification !== 10 &&
+    checkDescription !== 10 &&
     checkSales !== 10
   ) {
     check = true;
@@ -323,11 +375,6 @@ app.controller("product-form-ctrl", function ($scope, $http) {
   $scope.save = function () {
     if (checkForm()) {
       var item = angular.copy($scope.form);
-      
-      // Gán nội dung HTML vào thuộc tính 'specification' trong đối tượng item
-      item.specification = document.getElementById("specification").value;
-      item.description = document.getElementById("description").value;
-      
       $http.post(`/rest/product/form`, item).then((resp) => {
         $scope.info.status = true;
         $scope.info.content = "Bạn đã thêm mới thành công một sản phẩm!";
@@ -350,6 +397,10 @@ app.controller("product-form-ctrl", function ($scope, $http) {
       })
       .then((resp) => {
         $scope.form.image1 = resp.data.name;
+      })
+      .catch((error) => {
+        alert("loi load hinh");
+        console.log(error);
       });
   };
 
@@ -364,6 +415,10 @@ app.controller("product-form-ctrl", function ($scope, $http) {
       })
       .then((resp) => {
         $scope.form.image2 = resp.data.name;
+      })
+      .catch((error) => {
+        alert("loi load hinh");
+        console.log(error);
       });
   };
 
@@ -378,6 +433,10 @@ app.controller("product-form-ctrl", function ($scope, $http) {
       })
       .then((resp) => {
         $scope.form.image3 = resp.data.name;
+      })
+      .catch((error) => {
+        alert("loi load hinh");
+        console.log(error);
       });
   };
 
@@ -392,6 +451,10 @@ app.controller("product-form-ctrl", function ($scope, $http) {
       })
       .then((resp) => {
         $scope.form.image4 = resp.data.name;
+      })
+      .catch((error) => {
+        alert("loi load hinh");
+        console.log(error);
       });
   };
 
@@ -406,6 +469,10 @@ app.controller("product-form-ctrl", function ($scope, $http) {
       })
       .then((resp) => {
         $scope.form.image5 = resp.data.name;
+      })
+      .catch((error) => {
+        alert("loi load hinh");
+        console.log(error);
       });
   };
 });

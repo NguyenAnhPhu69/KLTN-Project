@@ -38,7 +38,7 @@
 							chủ</a></li>
 					<li class="breadcrumb-item"><a
 						th:href="@{/admin/order/list/success}">Đơn hàng</a></li>
-					<li class="breadcrumb-item active">Đã hủy đơn</li>
+					<li class="breadcrumb-item active">Đã hủy</li>
 				</ol>
 			</div>
 
@@ -80,8 +80,8 @@
 									<td>{{item.date | date:'dd/MM/yyyy'}}</td>
 									<td ng-if="item.discount != null">{{item.discount.price | currency : '' : 0}}</td>
 									<td ng-if="item.discount == null">0</td>
-									<td ng-if="item.discount == null">{{item.total + ((item.province === "Hồ Chí Minh") ? 18000 : 30000) | currency : '' : 0}}</td>
-									<td ng-if="item.discount != null">{{item.total + ((item.province === "Hồ Chí Minh") ? 18000 : 30000) - item.discount.price | currency : '' : 0}}</td>
+									<td ng-if="item.discount == null">{{item.total + 50000 | currency : '' : 0}}</td>
+									<td ng-if="item.discount != null">{{item.total + 50000 - item.discount.price | currency : '' : 0}}</td>
 									<td><a ng-click="modalDetail(item)"
 										class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
 										title="Xem chi tiết"> <i class="icon wb-info-circle"></i>
@@ -149,7 +149,7 @@
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Tỉnh/Thành
 									phố:</label> <input type="text" readonly="readonly"
-									class="form-control" id="province-input" ng-model="formDetail.province">
+									class="form-control" ng-model="formDetail.province">
 							</div>
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Quận/Huyện:</label>
@@ -190,10 +190,10 @@
 									class="form-control"
 									ng-model="formDetail.subTotal | currency : '' : 0">
 							</div>
-							<div class="form-group"> 
+							<div class="form-group">
 								<label for="message-text" class="col-form-label">Tiền
 									vận chuyển:</label> <input type="text" readonly="readonly"
-									class="form-control" ng-model="shippingFee" value="">
+									class="form-control" value="50,000">
 							</div>
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Tiền

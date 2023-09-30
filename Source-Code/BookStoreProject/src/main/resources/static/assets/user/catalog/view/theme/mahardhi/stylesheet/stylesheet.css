@@ -4763,7 +4763,6 @@ a.thumbnail {
     font-weight: 500;
 }
 .pro_price {
-	color: #f38c61;
     font-size: 24px;
     display: inline-block;
     font-weight: 500;
@@ -4827,7 +4826,7 @@ a.thumbnail {
 }
 .right_info .control-label.qty {
     margin: 0 0 10px 0;
-    padding-right: 1em;
+    display: block;
 }
 #product .pro-btns>button {
     float: left;

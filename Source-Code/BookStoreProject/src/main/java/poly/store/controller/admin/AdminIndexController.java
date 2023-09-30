@@ -26,7 +26,7 @@ import poly.store.service.UserService;
 /**
  * Class de hien thi trang chu quan tri
  * 
- * @author phu-ute
+ * @author khoa-ph
  * @version 1.00
  */
 @Controller

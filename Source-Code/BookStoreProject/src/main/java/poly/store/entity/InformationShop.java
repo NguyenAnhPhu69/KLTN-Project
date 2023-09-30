@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 /**
  * Class chua thong tin cua hang
  * 
- * @author phu-ute
+ * @author tuan-pm
  * @version 1.00
  */
 @SuppressWarnings("serial")

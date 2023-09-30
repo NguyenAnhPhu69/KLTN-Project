@@ -15,7 +15,7 @@ import poly.store.entity.Role;
 /**
  * Class cung cap cac dich vu thao tac voi table Roles trong database
  * 
- * @author phu-ute
+ * @author khoa-ph
  * @version 1.00
  */
 public interface RoleService {

@@ -17,7 +17,7 @@ import lombok.Data;
 /**
  * Class thong tin truy van cua bang Employee
  * 
- * @author phu-ute
+ * @author khoa-ph
  * @version 1.00
  */
 @Data

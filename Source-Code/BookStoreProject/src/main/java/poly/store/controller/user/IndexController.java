@@ -37,7 +37,7 @@ import poly.store.service.UserRoleService;
 /**
  * Class de hien thi trang chu nguoi dung
  * 
- * @author phu-ute
+ * @author khoa-ph
  * @version 1.00
  */
 @Controller

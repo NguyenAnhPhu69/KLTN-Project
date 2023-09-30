@@ -28,7 +28,7 @@ import poly.store.service.UserRoleService;
  * Class trien khai theo interface UserRoleService, Thao tac voi Class
  * UserRoleDao de thuc hien cac tac vu tuong ung
  * 
- * @author phu-ute
+ * @author KHOA-PH
  * @version 1.00
  */
 @Service
