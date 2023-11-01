@@ -30,7 +30,7 @@ import poly.store.validator.user.ResetPassValidator;
 /**
  * Class lam moi lai mat khau
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  *
  */

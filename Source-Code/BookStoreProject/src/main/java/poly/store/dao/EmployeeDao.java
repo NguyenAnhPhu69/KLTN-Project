@@ -20,7 +20,7 @@ import poly.store.model.EmployeeModel;
 /**
  * Class thuc hien truy van thong tin bang Employee trong database
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 public interface EmployeeDao extends JpaRepository<Employee, Integer> {

@@ -131,42 +131,45 @@ $('.related-carousel').each(function() {
 });
 
 $(document).ready(function() {
-	if ($(window).width() > 991) {
-		$("#zoom").elevateZoom({
-			  
-		});
+  var ez = $('#zoom').data('elevateZoom');
+  var image_index = 0;
 
-		var image_index = 0;
-		$(document).on('click', '.thumbnail', function() {
-			$('.thumbnails').magnificPopup('open', image_index);
-			return false;
-		});
+  if ($(window).width() > 991) {
+    $("#zoom").elevateZoom({
+      
+    });
 
-		$('#additional-carousel a').click(function() {
-			var smallImage = $(this).attr('data-image');
-			var largeImage = $(this).attr('data-zoom-image');
-			var ez = $('#zoom').data('elevateZoom');
-			$('.thumbnail').attr('href', largeImage);
-			ez.swaptheimage(smallImage, largeImage);
-			image_index = $(this).index('#additional-carousel a');
-			return false;
-		});
-		
-	} else {
-		$(document).on('click', '.thumbnail', function() {
-			$('.thumbnails').magnificPopup('open', 0);
-			return false;
-		});
-	}
-});
+    $(document).on('click', '.thumbnail', function() {
+      $('.thumbnails').magnificPopup('open', image_index);
+      return false;
+    });
 
-$(document).ready(function() {
-	$('.thumbnails').magnificPopup({
-		type: 'image',
-		delegate: 'a.elevatezoom-gallery', // Mahardhi Edit
-		gallery: {
-			enabled: true
-		}
-	});
+    $('#additional-carousel a').click(function() {
+      var smallImage = $(this).attr('data-image');
+      var largeImage = $(this).attr('data-zoom-image');
+      $('.thumbnail').attr('href', largeImage);
+      ez.swaptheimage(smallImage, largeImage);
+      image_index = $(this).index('#additional-carousel a');
+      return false;
+    });
+    
+  } else {
+    $(document).on('click', '.thumbnail', function() {
+      var smallImage = $(this).attr('data-image');
+      var largeImage = $(this).attr('data-zoom-image');
+      $('.thumbnail').attr('href', largeImage);
+      ez.swaptheimage(smallImage, largeImage);
+      $('.thumbnails').magnificPopup('open', 0);
+      return false;
+    });
+  }
+
+  $('.thumbnails').magnificPopup({
+    type: 'image',
+    delegate: 'a.elevatezoom-gallery', // Mahardhi Edit
+    gallery: {
+      enabled: true
+    }
+  });
 });
 

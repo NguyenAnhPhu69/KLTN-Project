@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 /**
  * Class lam viec voi form register.html
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  * 
  */

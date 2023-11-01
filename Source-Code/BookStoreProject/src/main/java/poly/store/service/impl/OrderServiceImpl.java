@@ -114,10 +114,10 @@ public class OrderServiceImpl implements OrderService{
 		detailOrder.setFullName(listOrder.get(0).getAddress().getUser().getFullname());
 		String method = "";
 		if (listOrder.get(0).getMethod().equals("1")) {
-			method = "Thanh toán online khi nhận hàng";
+			method = "Ví PayPal";
 		}
 		if (listOrder.get(0).getMethod().equals("0")) {
-			method = "Thanh toán trực tiếp khi nhận hàng";
+			method = "Thanh toán bằng tiền mặt khi nhận hàng";
 		}
 		detailOrder.setMethod(method);
 		detailOrder.setPhone(listOrder.get(0).getAddress().getPhone());
@@ -137,7 +137,10 @@ public class OrderServiceImpl implements OrderService{
 
 			subTotal = subTotal + list.getProduct().getPrice() * list.getQuality();
 		}
-		total = subTotal + 50000 - detailOrder.getDiscount();
+		
+		String province = listOrder.get(0).getAddress().getProvince();
+		int shippingFee = province.equals("Hồ Chí Minh") ? 18000 : 30000;
+		total = subTotal + shippingFee - detailOrder.getDiscount();
 
 		detailOrder.setSubTotal(subTotal);
 		detailOrder.setTotal(total);
@@ -261,7 +264,10 @@ public class OrderServiceImpl implements OrderService{
 					if (discount != null) {
 						sum = sum - discount.getPrice();
 					}
-					sum = sum + 50000;
+					String province = order.getProvince();
+	                int shippingFee = province.equals("Hồ Chí Minh") ? 18000 : 30000;
+	                sum += shippingFee;
+
 				}
 
 			}
@@ -292,7 +298,9 @@ public class OrderServiceImpl implements OrderService{
 					if (discount != null) {
 						sum = sum - discount.getPrice();
 					}
-					sum = sum + 50000;
+					String province = order.getProvince();
+	                int shippingFee = province.equals("Hồ Chí Minh") ? 18000 : 30000;
+	                sum += shippingFee;
 				}
 
 			}
@@ -325,7 +333,9 @@ public class OrderServiceImpl implements OrderService{
 					if (discount != null) {
 						sum = sum - discount.getPrice();
 					}
-					sum = sum + 50000;
+					String province = order.getProvince();
+	                int shippingFee = province.equals("Hồ Chí Minh") ? 18000 : 30000;
+	                sum += shippingFee;
 				}
 
 			}

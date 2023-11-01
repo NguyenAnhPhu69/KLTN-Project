@@ -1,11 +1,12 @@
 $(document).ready(function(){
     disableMethod();
     disableConfirm();
+    disableTransport();
     useAddressExits();
 });
 
 function disableAddress(){
-    $("#txtAddress").text("Bước 1: Phương thức vận chuyển");
+    $("#txtAddress").html("<strong>Bước 2: Địa chỉ giao hàng</strong>");
     $("#btnAddress").css("display", "none");
     $("#collapse-payment-address").css("display", "none");
 }
@@ -16,8 +17,20 @@ function enableAddress(){
     $("#collapse-payment-address").removeAttr("style");
 }
 
+function disableTransport(){
+    $("#txtTransport").html("<strong>Bước 3: Phương thức vận chuyển</strong>");
+    $("#btnTransport").css("display", "none");
+    $("#collapse-method-transport").css("display", "none");
+}
+
+function enableTransport(){
+   // $("#txtMethod").text("");
+    $("#btnTransport").removeAttr("style");
+    $("#collapse-method-transport").removeAttr("style");
+}
+
 function disableMethod(){
-    $("#txtMethod").text("Bước 3: Phương thức vận chuyển");
+    $("#txtMethod").html("<strong>Bước 4: Phương thức thanh toán</strong>");
     $("#btnMethod").css("display", "none");
     $("#collapse-shipping-method").css("display", "none");
 }
@@ -29,7 +42,7 @@ function enableMethod(){
 }
 
 function disableConfirm(){
-    $("#txtConfirm").text("Bước 4: Xác nhận đơn hàng");
+    $("#txtConfirm").html("<strong>Bước 5: Xác nhận đơn hàng</strong>");
     $("#btnConfirm").css("display", "none");
     $("#collapse-checkout-confirm").css("display", "none");
 }
@@ -212,16 +225,26 @@ function transferAddress(){
 	enableAddress();
 	disableMethod();
 	disableConfirm();
+	disableTransport();
+}
+
+function transferTransport(){
+	enableTransport();
+	disableMethod();
+	disableConfirm();
+	disableAddress();
 }
 
 function transferMethod(){
     disableAddress();
     enableMethod();
     disableConfirm();
+    disableTransport();
 }
 
 function transferConfirm(){
     disableAddress();
     disableMethod();
+    disableTransport();
     enableConfirm();
 }

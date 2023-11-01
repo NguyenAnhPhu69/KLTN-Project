@@ -19,7 +19,7 @@ import poly.store.entity.User;
 /**
  * Class thuc hien truy van thong tin bang User trong database
  * 
- * @author KHOA-PH
+ * @author phu-ute
  * @version 1.00
  */
 public interface UserDao extends JpaRepository<User, Integer> {

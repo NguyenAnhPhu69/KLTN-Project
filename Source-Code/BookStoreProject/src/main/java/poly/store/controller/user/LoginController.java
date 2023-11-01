@@ -29,7 +29,7 @@ import poly.store.validator.user.LoginFormValidator;
 /**
  * Class su ly cac hoat dong dang nhap cua nguoi dung
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 @Controller

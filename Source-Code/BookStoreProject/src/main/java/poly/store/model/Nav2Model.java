@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 /**
  * Class thong tin truy van cua bang MenuOne
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 @Data

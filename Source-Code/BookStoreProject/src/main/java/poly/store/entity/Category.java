@@ -1,9 +1,9 @@
 /**
- * @(#)Category.java 2021/09/19.
+ * @(#)Category.java 2023/06/19.
  * 
- * Copyright(C) 2021 by PHOENIX TEAM.
+ * Copyright(C) 2023 by HCMUTE TEAM.
  * 
- * Last_Update 2021/09/19.
+ * Last_Update 2023/06/19.
  * Version 1.00.
  */
 package poly.store.entity;
@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 /**
  * Class chua thong tin Category
  * 
- * @author tuan-pm
+ * @author phu-ute
  * @version 1.00
  */
 @SuppressWarnings("serial")

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 /**
  * Class chua thong tin gui mail
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  * 
  */
@@ -31,7 +31,7 @@ public class MailInfo {
 	String body;
 	String[] attachment;
 	public MailInfo(String to, String subject, String body) {
-		this.from = "FPT Polytechnic <poly@fpt.edu.vn>";
+		this.from = "Nhà sách trực tuyến Hohaho <ptchc@hcmute.edu.vn>";
 		this.to = to;
 		this.subject = subject;
 		this.body = body;

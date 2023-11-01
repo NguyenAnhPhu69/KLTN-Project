@@ -24,6 +24,15 @@ angular
       $scope.modalDetail = function (detail) {
         $http.get("/rest/order/pending/" + detail.id).then((resp) => {
           $scope.formDetail = resp.data;
+          
+          // Thêm đoạn mã JavaScript để so sánh và đưa ra giá trị phù hợp
+          if ($scope.formDetail.province === 'Hồ Chí Minh') {
+            $scope.shippingFee = '18,000';
+          } else {
+            $scope.shippingFee = '30,000';
+          }
+          
+          
         });
         $("#modalDetail").modal("show");
       };

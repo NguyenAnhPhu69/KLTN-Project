@@ -21,7 +21,7 @@ import poly.store.service.UserService;
 /**
  * Class bat loi form login.html
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 @Component

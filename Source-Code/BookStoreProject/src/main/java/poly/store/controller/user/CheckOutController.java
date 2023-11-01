@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,9 +30,30 @@ import poly.store.service.ProductService;
 import poly.store.service.SessionService;
 import poly.store.service.impl.MailerServiceImpl;
 import poly.store.service.impl.ShoppingCartServiceImpl;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
+import com.paypal.api.payments.Links;
+import com.paypal.api.payments.Payment;
+import com.paypal.base.rest.PayPalRESTException;
+import poly.store.config.PaypalPaymentIntent;
+import poly.store.config.PaypalPaymentMethod;
+import poly.store.service.PaypalService;
+import poly.store.utils.Utils;
+import org.springframework.web.client.RestTemplate;
+import org.json.JSONObject;
+
 
 @Controller
 public class CheckOutController {
+	public Model model1;
+	public String addressId1;
+	public String method1;
+	public String comment1;
+	public static final String URL_PAYPAL_SUCCESS = "pay/success";
+	public static final String URL_PAYPAL_CANCEL = "pay/cancel";
+	private Logger log = LoggerFactory.getLogger(getClass());
+	@Autowired
+	private PaypalService paypalService;
 	@Autowired
 	AddressService addressService;
 
@@ -69,10 +92,46 @@ public class CheckOutController {
 	}
 	
 	@PostMapping("/shop/cart/checkout")
-	public String order(Model model) {
+	public String order(HttpServletRequest request, Model model) {
+		model1 = model;
 		String addressId = paramService.getString("address_id", "");
 		String method = paramService.getString("shipping_method", "");
 		String comment = paramService.getString("comment", null);
+		double totalPrice = paramService.getDouble("total_price", 0);
+		addressId1= addressId;
+		method1 = method;
+		comment1 = comment;
+		if ("1".equals(method)) {
+			String cancelUrl = Utils.getBaseURL(request) + "/" + URL_PAYPAL_CANCEL;
+			String successUrl = Utils.getBaseURL(request) + "/" + URL_PAYPAL_SUCCESS;
+			try {
+				// Convert price from VND to USD
+		        RestTemplate restTemplate = new RestTemplate();
+		        String apiUrl = "https://openexchangerates.org/api/latest.json?app_id=878405e77cff46de937a43f166b06be8&symbols=USD,VND";
+		        String response = restTemplate.getForObject(apiUrl, String.class);
+		        JSONObject json = new JSONObject(response);
+		        double usdRate = json.getJSONObject("rates").getDouble("USD");
+		        double vndRate = json.getJSONObject("rates").getDouble("VND");
+		        double usdPrice = totalPrice / vndRate * usdRate;
+		        
+				Payment payment = paypalService.createPayment(
+						usdPrice,
+						"USD",
+						PaypalPaymentMethod.paypal,
+						PaypalPaymentIntent.sale,
+						"payment description",
+						cancelUrl,
+						successUrl);
+				for(Links links : payment.getLinks()){
+					if(links.getRel().equals("approval_url")){
+						return "redirect:" + links.getHref();
+					}
+				}
+			} catch (PayPalRESTException e) {
+				log.error(e.getMessage());
+			}
+			return Constants.USER_DISPLAY_INDEX;
+	    }
 		
 		Address address = addressService.getAddressById(Integer.parseInt(addressId));
 		
@@ -120,16 +179,89 @@ public class CheckOutController {
 		cartService.clearDiscount();
 		model.addAttribute("cart", cartService);
 		
-		mailerService.queue(address.getUser().getEmail(), "Đặt Hàng Thành Công Tại Web FAHASA", 
+		mailerService.queue(address.getUser().getEmail(), "Đặt Hàng Thành Công Tại Web HOHAHO", 
 				"Kính chào " + address.getUser().getFullname() +",<br>"
-				+ "Cảm ơn bạn đã mua hàng tại FAHASA. Mã đơn hàng của bạn là " + code + "<br>"
-				+ "Xin vui lòng click vào đường link http://localhost:8080/account/order/invoice/" + code + " để xem chi tiết hóa đơn.<br>"
+				+ "Cảm ơn bạn đã mua hàng tại HOHAHO. Mã đơn hàng của bạn là " + code + "<br>"
+				+ "Xin vui lòng click vào đường link http://localhost:8181/account/order/invoice/" + code + " để xem chi tiết hóa đơn.<br>"
 				+ "<br><br>"
 				+ "Xin chân thành cảm ơn đã sử dụng dịch vụ,<br>"
-				+ "FASAHA SHOP");
+				+ "HOHAHO SHOP");
 		
 		
 		return "redirect:/shop/cart/checkout/success";
+	}
+	
+	@GetMapping(URL_PAYPAL_CANCEL)
+	public String cancelPay(){
+		return "user/checkout/cancel";
+	}
+	
+	@GetMapping(URL_PAYPAL_SUCCESS)
+	public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId){
+		try {
+			Payment payment = paypalService.executePayment(paymentId, payerId);
+			if(payment.getState().equals("approved")){
+				Address address = addressService.getAddressById(Integer.parseInt(addressId1));
+				
+				Discount discount = cartService.getDiscount();
+				
+				if(discount.getId() == 0) {
+					discount = null;
+				}	
+				
+				int code;
+				Date date = new Date();
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String strDate = formatter.format(date);
+				
+				while (true) {
+					code = (int) Math.floor(((Math.random() * 899999) + 100000));
+					List<Order> list = orderService.getOrderByName(String.valueOf(code));
+					if (list.isEmpty()) {
+						break;
+					}
+				}
+				
+				List<CartModel> listCartModel = new ArrayList<>(cartService.getItems());
+				for(CartModel cart: listCartModel) {
+					Order order = new Order();
+					Product product = cart.getProduct();
+					order.setCode(String.valueOf(code));			
+					order.setAddress(address);
+					order.setDiscount(discount);
+					order.setProduct(product);
+					order.setQuality(cart.getQuality());
+					order.setDate(strDate);
+					order.setMethod(method1);
+					order.setStatus("1");
+					order.setComment(comment1);
+					orderService.save(order);
+					
+					product.setQuality(product.getQuality() - cart.getQuality());
+					productService.updateQuality(product);
+				}
+				
+				discountService.updateQuality(discount);
+				
+				cartService.clear();
+				cartService.clearDiscount();
+				model1.addAttribute("cart", cartService);
+				
+				mailerService.queue(address.getUser().getEmail(), "Đặt Hàng Thành Công Tại Web HOHAHO", 
+						"Kính chào " + address.getUser().getFullname() +",<br>"
+						+ "Cảm ơn bạn đã mua hàng tại HOHAHO. Mã đơn hàng của bạn là " + code + "<br>"
+						+ "Xin vui lòng click vào đường link http://localhost:8181/account/order/invoice/" + code + " để xem chi tiết hóa đơn.<br>"
+						+ "<br><br>"
+						+ "Xin chân thành cảm ơn đã sử dụng dịch vụ,<br>"
+						+ "HOHAHO SHOP");
+				
+				
+				return "redirect:/shop/cart/checkout/success";
+			}
+		} catch (PayPalRESTException e) {
+			log.error(e.getMessage());
+		}
+		return Constants.USER_DISPLAY_INDEX;
 	}
 	
 	@GetMapping("/shop/cart/checkout/success")
@@ -138,7 +270,7 @@ public class CheckOutController {
 	}
 	
 	@ModelAttribute("total")
-	public int tolal() {
+	public int total() {
 		List<CartModel> list = new ArrayList<>(cartService.getItems());
 		int total = 0;
 		for(CartModel i: list) {
@@ -153,4 +285,5 @@ public class CheckOutController {
 		String username = ((UserDetails) principal).getUsername();
 		return addressService.findListAddressByEmail(username);
 	}
+	
 }

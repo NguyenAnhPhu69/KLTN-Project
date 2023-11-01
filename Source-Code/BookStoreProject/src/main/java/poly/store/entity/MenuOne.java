@@ -1,9 +1,9 @@
 /**
- * @(#)MenuOne.java 2021/09/22.
+ * @(#)MenuOne.java 2023/06/22.
  * 
- * Copyright(C) 2021 by PHOENIX TEAM.
+ * Copyright(C) 2023 by HCMUTE TEAM.
  * 
- * Last_Update 2021/09/22.
+ * Last_Update 2023/06/22.
  * Version 1.00.
  */
 package poly.store.entity;

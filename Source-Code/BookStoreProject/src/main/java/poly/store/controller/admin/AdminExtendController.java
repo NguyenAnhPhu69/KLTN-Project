@@ -18,6 +18,11 @@ public class AdminExtendController {
 		return Constants.USER_DISPLAY_ADMIN_EXTEND_SPECIFICATION;
 	}
 	
+	@GetMapping("/admin/extend/description")
+	public String description(Model model) {
+		return Constants.USER_DISPLAY_ADMIN_EXTEND_DESCRIPTION;
+	}
+	
 	/**
 	 * Hien thi giao dien chinh sua hinh
 	 * 

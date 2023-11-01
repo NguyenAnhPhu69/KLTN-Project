@@ -22,10 +22,15 @@
 												th:src="@{|/assets/images/imageProduct/${item2.product.image2}|}"
 												th:title="${item2.product.name}" alt="Fridge" />
 											</a>
-											<th:block th:if="${item2.product.sales != 0}">
-												<div class="sale-text">
-													<span class="section-sale">On Sale!</span>
-												</div>
+											<th:block th:if="${item2.product.quality == 0}">
+											    <div class="sale-text">
+											        <span class="section-sale" style="color: red;">Sold out!</span>
+											    </div>
+											</th:block>
+											<th:block th:if="${item2.product.quality != 0 and item2.product.sales != 0}">
+											    <div class="sale-text">
+											        <span class="section-sale">On Sale!</span>
+											    </div>
 											</th:block>
 										</div>
 										<div class="thumb-description clearfix">
@@ -62,7 +67,7 @@
 													th:value="${item2.product.id}" />
 
 												<button type="button" class="addcart" title="Add to Cart"
-													th:onclick="location.href = '/san-pham/[(${item2.product.Namesearch})]'">Mua
+													th:onclick="location.href = '/san-pham/[(${item2.product.Namesearch})]'">Xem
 													ngay</button>
 											</div>
 										</div>

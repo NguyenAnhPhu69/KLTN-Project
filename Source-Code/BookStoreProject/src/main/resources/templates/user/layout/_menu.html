@@ -22,7 +22,7 @@
 						<div id="logo" class="col-md-4">
 							<a th:href="@{/}"><img style="width: 65%"
 								th:src="@{|/assets/user/image/catalog/${information.logo}|}"
-								title="Your Store" alt="Your Store" class="img-responsive" /></a>
+								title="Nhà sách online hohaho.com" alt="Nhà sách online hohaho.com" class="img-responsive" /></a>
 						</div>
 
 						<div class="header-links col-md-4">
@@ -34,7 +34,7 @@
 											Khoản</span> <th:block th:unless="${#request.remoteUser}">
 											<span>Đăng ký</span>
 										</th:block> <th:block th:if="${#request.remoteUser}">
-											<span>Xin chào!</span>
+											<span th:text="${#request.remoteUser}"></span>
 										</th:block>
 								</span>
 								</a>
@@ -55,26 +55,24 @@
 										<li><a th:href="@{/forget-password}">Quên mật khẩu</a></li>
 									</th:block>
 									<li class="language">
-										<div class="language-box">
-											<form action="#" method="post" enctype="multipart/form-data"
-												id="form-language">
-												<button class="btn btn-link dropdown-toggle"
-													data-toggle="dropdown">
-													<span class="drop-text">Ngôn ngữ:</span> <span class="code">vi</span>
-												</button>
-												<ul class="language-dropdown lang">
-													<li>
-														<button class="btn btn-link btn-block language-select"
-															type="button" name="en-gb">
-															<img src="/assets/user/catalog/language/vi/vi.png"
-																alt="VietName" title="VietName" /> VietNam
-														</button>
-													</li>
-												</ul>
-												<input type="hidden" name="code" value="" /> <input
-													type="hidden" name="redirect" value="#" />
-											</form>
-										</div>
+									    <div class="language-box">
+									        <form action="#" method="post" enctype="multipart/form-data" id="form-language">
+									            <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+									                <span class="drop-text">Ngôn ngữ:</span> <span class="code">vi</span>
+									            </button>
+									            <ul class="language-dropdown lang">
+									                <li>
+									                    <button class="btn btn-link btn-block language-select" type="button" name="en-gb"
+									                        style="pointer-events: none;">
+									                        <img src="/assets/user/catalog/language/vi/vi.png" alt="VietName" title="VietName" />
+									                        VietNam
+									                    </button>
+									                </li>
+									            </ul>
+									            <input type="hidden" name="code" value="" />
+									            <input type="hidden" name="redirect" value="#" />
+									        </form>
+									    </div>
 									</li>
 								</ul>
 							</div>
@@ -175,7 +173,7 @@
 											th:href="@{/index}">Trang chủ</a></li>
 										<li class="menulist"><a th:href="@{/uu-dai}">Ưu Đãi</a></li>
 										<li class="menulist"><a th:href="@{/contact}">Liên Hệ</a></li>
-										<li class="menulist"><a href="#">Thương Hiệu</a></li>
+										<li class="menulist"><a th:href="@{/aboutUs}">Thương Hiệu</a></li>
 										<li class="blog"><a th:href="@{/blog}">Blogs</a></li>
 
 									</ul>

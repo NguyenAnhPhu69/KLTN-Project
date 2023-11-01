@@ -231,10 +231,6 @@ app.controller("blog-form-ctrl", function ($scope, $http) {
       })
       .then((resp) => {
         $scope.form.logo = resp.data.name;
-      })
-      .catch((error) => {
-        alert("loi load hinh");
-        console.log(error);
       });
   };
 
@@ -250,10 +246,6 @@ $scope.imageImageBanner = function (files) {
       })
       .then((resp) => {
         $scope.form.banner = resp.data.name;
-      })
-      .catch((error) => {
-        alert("loi load hinh");
-        console.log(error);
       });
   };
   

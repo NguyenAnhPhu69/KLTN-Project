@@ -27,7 +27,7 @@ import poly.store.service.impl.UserDetailsServiceImpl;
 /**
  * Class dung de phan quyen cho project
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 @Configuration

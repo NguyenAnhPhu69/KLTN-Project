@@ -18,7 +18,7 @@ import poly.store.model.ResetPassword;
 /**
  * Class bat loi form reset-password.html
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 @Component

@@ -11,7 +11,7 @@ package poly.store.common;
 /**
  * Class chua thong tin constant
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 public class Constants {
@@ -113,6 +113,8 @@ public class Constants {
 	public static final String USER_DISPLAY_ADMIN_PRODUCT_FORM = "admin/products/form";
 	// Duong dan den man hinh trang tao thong so
 	public static final String USER_DISPLAY_ADMIN_EXTEND_SPECIFICATION = "admin/extend/create-specification";
+	// Duong dan den man hinh trang tao mo ta
+	public static final String USER_DISPLAY_ADMIN_EXTEND_DESCRIPTION = "admin/extend/create-description";
 	// Duong dan den man hinh trang chinh sua hinh anh
 	public static final String USER_DISPLAY_ADMIN_EXTEND_CROP_IMAGE = "admin/extend/crop-image";
 	// Duong dan den man hinh trang quan ly danh sach ma giam gia

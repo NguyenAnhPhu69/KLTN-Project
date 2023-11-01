@@ -22,7 +22,7 @@ import poly.store.service.EmployeeService;
  * Class trien khai theo interface EmployeeService, Thao tac voi Class EmployeeDao de
  * thuc hien cac tac vu tuong ung
  * 
- * @author KHOA-PH
+ * @author phu-ute
  * @version 1.00
  */
 @Service

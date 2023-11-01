@@ -82,15 +82,12 @@ public class ParamService {
 	}
 	
 	public String convertDate(String date) {
-		String[] month = { "January", "February", "March", "April", "May", "June", "July", "August", "September",
-				"October", "November", "December" };
-		String[] words = date.split("-");
-		for (int i = 0; i < month.length; i++) {
-			if((i+1) == Integer.parseInt(words[1])) {
-				words[1] = month[i];
-			}
-		}
-		String result = words[1] + " " + words[2] + ", " + words[0];
-		return result;
+	    String[] month = { "January", "February", "March", "April", "May", "June", "July", "August", "September",
+	            "October", "November", "December" };
+	    String[] words = date.split("-");
+	    int monthIndex = Integer.parseInt(words[1]) - 1; // Lấy chỉ số của tháng từ giá trị số
+	    words[1] = month[monthIndex]; // Gán giá trị tháng từ mảng month
+	    String result = words[1] + " " + words[2] + ", " + words[0];
+	    return result;
 	}
 }

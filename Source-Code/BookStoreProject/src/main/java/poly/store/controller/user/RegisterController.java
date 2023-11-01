@@ -37,7 +37,7 @@ import poly.store.validator.user.RegisterFormValidator;
 /**
  * Class tao moi mot tai khoan
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  *
  */

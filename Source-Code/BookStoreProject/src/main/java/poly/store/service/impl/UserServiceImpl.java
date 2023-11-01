@@ -26,7 +26,7 @@ import poly.store.service.UserService;
  * Class trien khai theo interface UserService, Thao tac voi Class UserDao de
  * thuc hien cac tac vu tuong ung
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 @Service

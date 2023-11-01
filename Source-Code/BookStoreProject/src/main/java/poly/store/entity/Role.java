@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 /**
  * Class chua thong tin Role
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 @SuppressWarnings("serial")

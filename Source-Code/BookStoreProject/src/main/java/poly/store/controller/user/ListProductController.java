@@ -38,7 +38,7 @@ import poly.store.service.SessionService;
 /**
  * Class de danh sach san pham
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 @Controller

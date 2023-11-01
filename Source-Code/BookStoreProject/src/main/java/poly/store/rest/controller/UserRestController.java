@@ -30,7 +30,7 @@ import poly.store.service.UserService;
 /**
  * Class cung cap cac dich vu rest api cho bang employee
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 @CrossOrigin("*")

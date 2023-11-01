@@ -26,7 +26,7 @@ import poly.store.service.UserService;
 /**
  * Class de hien thi trang chu quan tri
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 @Controller
@@ -61,6 +61,7 @@ public class AdminIndexController {
 			revenue = revenue + item.getPrice();
 		}
 		
+		revenue = Math.round(revenue * 10000.0) / 10000.0;
 		long customer = userService.findAllUserNotRoleAdmin().size();
 		
 		long product = productService.findAll().size();

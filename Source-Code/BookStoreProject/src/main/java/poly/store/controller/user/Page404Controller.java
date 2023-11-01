@@ -18,7 +18,7 @@ import poly.store.common.Constants;
  * Class hien thi man hinh loi 
  * khi nguoi dung truy cap khong dung vai tro
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  *
  */

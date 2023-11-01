@@ -3,6 +3,7 @@ package poly.store.controller.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import poly.store.common.Constants;
 import poly.store.entity.Address;
+import poly.store.entity.Province;
 import poly.store.service.AddressService;
 
 @Controller
@@ -63,4 +65,5 @@ public class AddressController {
 		String username = ((UserDetails) principal).getUsername();
 		return addressService.findListAddressByEmail(username);
 	}
+	
 }

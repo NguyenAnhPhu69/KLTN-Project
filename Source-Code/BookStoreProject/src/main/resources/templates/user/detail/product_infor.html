@@ -1,11 +1,11 @@
 <div id="content" class="col-sm-9" ng-app="favorite-app"
 	ng-controller="favorite-ctrl">
-	<div class="alert alert-success alert-dismissible"
-		th:style="${infor}?'display: block;':'display: none;'">
-		Thông báo: Bạn đã thêm mới <a
-			th:href="@{|/san-pham/${inforProduct.Namesearch}|}">[[${inforProduct.name}]]</a> vào <a
-			th:href="@{/shop/cart}">giỏ hàng</a> của bạn!
-		<button type="button" class="close" data-dismiss="alert">×</button>
+	<div class="alert alert-success alert-dismissible" th:style="${infor} ? 'display: block;' : 'display: none;'">
+	    Thông báo: Bạn đã thêm mới <a th:href="@{|/san-pham/${inforProduct.Namesearch}|}">[[${inforProduct.name}]]</a> vào <a th:href="@{/shop/cart}">giỏ hàng</a> của bạn với số lượng là [[${quantity}]]!
+	    <button type="button" class="close" data-dismiss="alert">×</button>
+	</div>
+	<div th:if="${error}" class="alert alert-danger">
+	    Thông báo: [[${error}]]
 	</div>
 	<div class="pro-deatil row">
 		<div class="col-sm-6 product-img">
@@ -24,66 +24,80 @@
 					<div id="additional-carousel"
 						class="owl-carousel owl-theme clearfix">
 						<div class="image-additional">
-							<a
-								th:href="@{|/assets/images/imageProduct/${inforProduct.image1}|}"
-								title="Microwaves" class="elevatezoom-gallery"
-								th:data-image="@{|/assets/images/imageProduct/${inforProduct.image1}|}"
-								th:data-zoom-image="@{|/assets/images/imageProduct/${inforProduct.image1}|}">
-								<img
-								th:src="@{|/assets/images/imageProduct/${inforProduct.image1}|}"
-								title="Microwaves" alt="Microwaves" width="80" height="80" />
-							</a>
+							<a th:href="@{|/assets/images/imageProduct/${inforProduct.image1}|}"
+						       title="Microwaves"
+						       class="elevatezoom-gallery"
+						       th:data-image="@{|/assets/images/imageProduct/${inforProduct.image1}|}"
+						       th:data-zoom-image="@{|/assets/images/imageProduct/${inforProduct.image1}|}">
+						        <img th:src="@{|/assets/images/imageProduct/${inforProduct.image1}|}"
+						             title="Microwaves"
+						             alt="Microwaves"
+						             width="80"
+						             height="80"
+						             th:href="@{|/assets/images/imageProduct/${inforProduct.image1}|}" />
+    						</a>
 						</div>
 						<div class="image-additional">
-							<a
-								th:href="@{|/assets/images/imageProduct/${inforProduct.image2}|}"
-								title="Microwaves" class="elevatezoom-gallery"
-								th:data-image="@{|/assets/images/imageProduct/${inforProduct.image2}|}"
-								th:data-zoom-image="@{|/assets/images/imageProduct/${inforProduct.image2}|}">
-								<img
-								th:src="@{|/assets/images/imageProduct/${inforProduct.image2}|}"
-								title="Microwaves" alt="Microwaves" width="80" height="80" />
-							</a>
+							<a th:href="@{|/assets/images/imageProduct/${inforProduct.image2}|}"
+						       title="Microwaves"
+						       class="elevatezoom-gallery"
+						       th:data-image="@{|/assets/images/imageProduct/${inforProduct.image2}|}"
+						       th:data-zoom-image="@{|/assets/images/imageProduct/${inforProduct.image2}|}">
+						        <img th:src="@{|/assets/images/imageProduct/${inforProduct.image2}|}"
+						             title="Microwaves"
+						             alt="Microwaves"
+						             width="80"
+						             height="80"
+						             th:href="@{|/assets/images/imageProduct/${inforProduct.image2}|}" />
+    						</a>
 						</div>
 						<div class="image-additional">
-							<a
-								th:href="@{|/assets/images/imageProduct/${inforProduct.image3}|}"
-								title="Microwaves" class="elevatezoom-gallery"
-								th:data-image="@{|/assets/images/imageProduct/${inforProduct.image3}|}"
-								th:data-zoom-image="@{|/assets/images/imageProduct/${inforProduct.image3}|}">
-								<img
-								th:src="@{|/assets/images/imageProduct/${inforProduct.image3}|}"
-								title="Microwaves" alt="Microwaves" width="80" height="80" />
-							</a>
+							<a th:href="@{|/assets/images/imageProduct/${inforProduct.image3}|}"
+						       title="Microwaves"
+						       class="elevatezoom-gallery"
+						       th:data-image="@{|/assets/images/imageProduct/${inforProduct.image3}|}"
+						       th:data-zoom-image="@{|/assets/images/imageProduct/${inforProduct.image3}|}">
+						        <img th:src="@{|/assets/images/imageProduct/${inforProduct.image3}|}"
+						             title="Microwaves"
+						             alt="Microwaves"
+						             width="80"
+						             height="80"
+						             th:href="@{|/assets/images/imageProduct/${inforProduct.image3}|}" />
+    						</a>
 						</div>
 						<div class="image-additional">
-							<a
-								th:href="@{|/assets/images/imageProduct/${inforProduct.image4}|}"
-								title="Microwaves" class="elevatezoom-gallery"
-								th:data-image="@{|/assets/images/imageProduct/${inforProduct.image4}|}"
-								th:data-zoom-image="@{|/assets/images/imageProduct/${inforProduct.image4}|}">
-								<img
-								th:src="@{|/assets/images/imageProduct/${inforProduct.image4}|}"
-								title="Microwaves" alt="Microwaves" width="80" height="80" />
-							</a>
+							<a th:href="@{|/assets/images/imageProduct/${inforProduct.image4}|}"
+						       title="Microwaves"
+						       class="elevatezoom-gallery"
+						       th:data-image="@{|/assets/images/imageProduct/${inforProduct.image4}|}"
+						       th:data-zoom-image="@{|/assets/images/imageProduct/${inforProduct.image4}|}">
+						        <img th:src="@{|/assets/images/imageProduct/${inforProduct.image4}|}"
+						             title="Microwaves"
+						             alt="Microwaves"
+						             width="80"
+						             height="80"
+						             th:href="@{|/assets/images/imageProduct/${inforProduct.image4}|}" />
+    						</a>
 						</div>
 						<div class="image-additional">
-							<a
-								th:href="@{|/assets/images/imageProduct/${inforProduct.image5}|}"
-								title="Microwaves" class="elevatezoom-gallery"
-								th:data-image="@{|/assets/images/imageProduct/${inforProduct.image5}|}"
-								th:data-zoom-image="@{|/assets/images/imageProduct/${inforProduct.image5}|}">
-								<img
-								th:src="@{|/assets/images/imageProduct/${inforProduct.image5}|}"
-								title="Microwaves" alt="Microwaves" width="80" height="80" />
-							</a>
+							<a th:href="@{|/assets/images/imageProduct/${inforProduct.image5}|}"
+						       title="Microwaves"
+						       class="elevatezoom-gallery"
+						       th:data-image="@{|/assets/images/imageProduct/${inforProduct.image5}|}"
+						       th:data-zoom-image="@{|/assets/images/imageProduct/${inforProduct.image5}|}">
+						        <img th:src="@{|/assets/images/imageProduct/${inforProduct.image5}|}"
+						             title="Microwaves"
+						             alt="Microwaves"
+						             width="80"
+						             height="80"
+						             th:href="@{|/assets/images/imageProduct/${inforProduct.image5}|}" />
+    						</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<form th:action="@{|/san-pham/${inforProduct.Namesearch}|}"
-			method="post">
+		<form th:action="@{|/san-pham/${inforProduct.Namesearch}|}" method="post">
 			<div class="col-sm-6 right_info">
 				<h1 class="">[[${inforProduct.name}]]</h1>
 				<div class="rating clearfix">
@@ -109,9 +123,9 @@
 					</div>
 					<a href="" class="reviews"
 						onclick="$('a[href=\'#tab-review\']').trigger('click'); $('body,html').animate({scrollTop: $('.nav-tabs').offset().top}, 800); return false;">[[${countComment}]]
-						đánh giá</a> <a href="" class="write-review"
+						Bình Luận</a> <a href="" class="write-review"
 						onclick="$('a[href=\'#tab-review\']').trigger('click'); $('body,html').animate({scrollTop: $('.nav-tabs').offset().top}, 800); return false;"><i
-						class="fa fa-pencil" aria-hidden="true"></i>Viết đánh giá</a>
+						class="fa fa-pencil" aria-hidden="true"></i>Viết bình luận</a>
 				</div>
 				<hr>
 				<ul class="list-unstyled">
@@ -133,7 +147,7 @@
 						
 						
 					</li>
-					<li class="tax">Phí vận chuyển: 50.000đ</li>
+					<li class="tax">Đổi trả sản phẩm trong 30 ngày</li>
 					<li>Giao hàng trong vòng 24h</li>
 				</ul>
 				<hr>
@@ -153,23 +167,22 @@
 					</div>
 				</div> -->
 					<div class="form-group">
-						<!-- <label class="control-label qty" for="input-quantity">Số
-						lượng</label> -->
+						 
 						<div class="product-btn-quantity">
-							<!-- <div class="minus-plus">
-							<button class="minus">
-								<i class="fa fa-minus"></i>
-							</button>
-							<input type="text" name="quantity" value="1" size="2"
-								id="input-quantity" class="form-control" />
-							<button class="plus">
-								<i class="fa fa-plus"></i>
-							</button>
-						</div> -->
+							<label class="control-label qty" for="input-quantity">Số lượng</label>
+					        <div class="minus-plus">
+					            <button class="minus">
+					                <i class="fa fa-minus"></i>
+					            </button>
+					            <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" pattern="[0-9]+" oninput="validateQuantity(this)" />
+					            <button class="plus">
+					                <i class="fa fa-plus"></i>
+					            </button>
+					        </div>
+							<br><br>
 							<div class="btn-groups pro-btns">
-								<button type="submit" id="button-cart"
-									data-loading-text="Loading..."
-									class="btn btn-primary btn-lg btn-block">Thêm vào giỏ</button>
+								<button type="submit" id="button-addcart" name="action" value="add-to-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block" style="background: #fff; color: #C92127; border: 1px solid #C92127;"><img src="/assets/user/image/icon/giohang.png">Thêm vào giỏ</button>
+								<button type="submit" id="button-buynow" name="action" value="buy-now" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block buy-now-button" style="border: 1.5px solid #f38c61">Mua ngay</button>
 								<button class="pro_wish" id="favorite" type="button"
 									th:onclick="addFavorite([(${inforProduct.id})])"
 									title="Yêu thích">
@@ -182,10 +195,9 @@
 							</div>
 						</div>
 						<input type="hidden" id="productId" th:value="${inforProduct.id}" />
-						<div th:if="${inforProduct.quality < 10}" class="alert alert-info">
-							<i class="fa fa-info-circle"></i> Chỉ còn tối đa
-							[[${inforProduct.quality}]] sản phẩm
-						</div>
+					    <div th:if="${inforProduct.quality < 10}" class="alert alert-info">
+					    	<i class="fa fa-info-circle"></i> Chỉ còn tối đa [[${inforProduct.quality}]] sản phẩm
+					    </div>
 					</div>
 
 				</div>
@@ -257,11 +269,11 @@
 								<button type="button" class="close" data-dismiss="alert">×</button>
 							</div>
 
-							<h2>Viết 1 đánh giá</h2>
+							<h2>Viết 1 bình luận</h2>
 							<div class="form-group required">
 								<div class="col-sm-2">
 									<label class="control-label" for="input-review">Viết
-										đánh giá</label>
+										bình luận</label>
 								</div>
 								<div class="col-sm-10">
 									<textarea name="text" rows="5" id="input-review"
@@ -315,3 +327,14 @@
 	<div th:replace="/user/detail/related_product.html"></div>
 
 </div>
+<script>
+    function validateQuantity(input) {
+        // Lấy giá trị hiện tại của trường số lượng
+        var value = input.value;
+
+        // Kiểm tra nếu giá trị không phải là số hoặc là số âm, đặt lại giá trị là 1
+        if (isNaN(value) || value < 1) {
+            input.value = 1;
+        }
+    }
+</script>

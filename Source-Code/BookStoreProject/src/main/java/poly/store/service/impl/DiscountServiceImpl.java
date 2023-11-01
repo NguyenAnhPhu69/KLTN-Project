@@ -134,15 +134,15 @@ public class DiscountServiceImpl implements DiscountService {
 		String[] expiration = discount.getExpiration().split("-");
 		String resultExpiration = expiration[2] + "/" + expiration[1] + "/" + expiration[0];
 		
-		mailerService.queue(user.getEmail(), "FAHASA. Thông Tin Khuyến Mãi!", 
+		mailerService.queue(user.getEmail(), "HOHAHO. Thông Tin Khuyến Mãi!", 
 				"Xin chào bạn " + user.getFullname() +",<br>"
-				+ "Fahasa xin thông báo đến bạn chương trình. " + discount.getName() + " khi bạn nhập mã <b>" + discount.getCode() + "</b>." + "<br>"
+				+ "Hohaho xin thông báo đến bạn chương trình. " + discount.getName() + " khi bạn nhập mã <b>" + discount.getCode() + "</b>." + "<br>"
 				+ "Thời gian áp dụng từ ngày " + resultApplyDay +" đến ngày " + resultExpiration + "<br>"
 				+ "Số tiền giảm " + discount.getPrice() + "đ<br>"
 				+ "Số tiền áp dụng trên " + discount.getMoneylimit() + "đ<br>"
 				+ "<br><br>"
 				+ "Xin chân thành cảm ơn đã sử dụng dịch vụ,<br>"
-				+ "FASAHA SHOP");
+				+ "HOHAHO SHOP");
 		return user;
 	}
 

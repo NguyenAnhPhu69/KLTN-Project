@@ -5,7 +5,7 @@
 	<div class="panel-group" id="accordion">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h4 class="panel-title">Bước 1: Giỏ Hàng</h4>
+				<h4 class="panel-title"><strong>Bước 1: Giỏ Hàng</strong></h4>
 			</div>
 			<div class="panel-collapse collapse" id="collapse-checkout-option">
 				<div class="panel-body"></div>
@@ -16,7 +16,7 @@
 				<h4 class="panel-title" id="txtAddress">
 					<a href="#collapse-payment-address" data-toggle="collapse"
 						id="btnAddress" data-parent="#accordion" class="accordion-toggle"
-						aria-expanded="true">Bước 2: Địa chỉ giao hàng <i
+						aria-expanded="true"><strong>Bước 2: Địa chỉ giao hàng</strong> <i
 						class="fa fa-caret-down"></i></a>
 				</h4>
 			</div>
@@ -31,15 +31,15 @@
 							</label>
 						</div>
 						<div id="payment-existing">
-							<select name="address_id" class="form-control"> <
-								<th:block th:if="${listAddress.isEmpty() == true}">
-									<option>Vui lòng thêm địa chị giao hàng</option>
-								</th:block>
-
-								<th:block th:unless="${listAddress.isEmpty() == true}">
-									<option th:each="item: ${listAddress}" th:value="${item.id}">
-										[[${item.detail}]]</option>
-								</th:block>
+							<select name="address_id" class="form-control" onchange="checkShippingFee()">
+							    <th:block th:if="${listAddress.isEmpty() == true}">
+							        <option disabled>Vui lòng thêm địa chỉ giao hàng</option>
+							    </th:block>
+							    <th:block th:unless="${listAddress.isEmpty() == true}">
+							        <option th:each="item: ${listAddress}" th:value="${item.id}" th:data-province="${item.province}">
+							            [[${item.detail}]]
+							        </option>
+							    </th:block>
 							</select>
 						</div>
 						<div class="radio">
@@ -122,11 +122,11 @@
 						</div>
 						<div class="buttons clearfix">
 							<div class="pull-right">
-								<a onclick="transferMethod()" id="btnAddressExits"
+								<a onclick="transferTransport()" id="btnAddressExits"
 									class="btn btn-primary"
 									th:classappend="${listAddress.isEmpty() == true?'disabled':''}">Tiếp
 									tục</a> <a id="btnAddressAnother" ng-click="addAddress()"
-									class="btn btn-primary">Tiếp tục</a>
+									class="btn btn-primary">Thêm địa chỉ giao hàng</a>
 							</div>
 						</div>
 					</div>
@@ -142,6 +142,36 @@
 									}
 								});
 					</script>
+					
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title" id="txtTransport">
+					<a href="#collapse-method-transport" data-toggle="collapse"
+						id="btnTransport" data-parent="#accordion" class="accordion-toggle"
+						aria-expanded="true"><strong>Bước 3: Phương thức vận chuyển</strong> <i
+						class="fa fa-caret-down"></i></a>
+				</h4>
+			</div>
+			<div class="panel-collapse collapse in" id="collapse-method-transport"
+				aria-expanded="true">
+				<div class="panel-body">
+					<div class="radio">
+	  					<label>
+						    <input type="radio" name="shipping_fee" value="18000" checked="checked">
+						    <strong>Giao hàng tiêu chuẩn:</strong> <span id="shipping-fee">18.000 đ</span>
+	  					</label>
+					</div>
+					<div class="buttons">
+						<div class="pull-left">
+							<input type="button" value="Trở lại" onclick="transferAddress()" class="btn btn-primary">
+						</div>
+						<div class="pull-right">
+							<input type="button" value="Tiếp tục" onclick="transferMethod()" class="btn btn-primary">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -150,28 +180,22 @@
 				<h4 class="panel-title" id="txtMethod">
 					<a href="#collapse-shipping-method" data-toggle="collapse"
 						id="btnMethod" data-parent="#accordion" class="accordion-toggle"
-						aria-expanded="true">Bước 3: Phương thức vận chuyển <i
+						aria-expanded="true"><strong>Bước 4: Phương thức thanh toán</strong> <i
 						class="fa fa-caret-down"></i></a>
 				</h4>
 			</div>
 			<div class="panel-collapse collapse in" id="collapse-shipping-method"
 				aria-expanded="true">
 				<div class="panel-body">
-					<p>Chọn phương thức vận chuyển cho đơn đặt hàng này.</p>
-					<p>
-						<strong>Trả tiền mặt khi nhận hàng</strong>
-					</p>
+					<p><strong>Chọn phương thức thanh toán cho đơn đặt hàng này.</strong></p>
 					<div class="radio">
 						<label> <input type="radio" name="shipping_method"
-							value="0" checked="checked"> Phí vận chuyển - 50k
+							th:value="1" checked="checked"><img src="/assets/user/image/icon/paypal.png">Ví PayPal
 						</label>
 					</div>
-					<p>
-						<strong>Thanh toán online khi nhận hàng</strong>
-					</p>
 					<div class="radio">
 						<label> <input type="radio" name="shipping_method"
-							value="1" checked="checked"> Phí vận chuyển - 50k
+							th:value="0" checked="checked"><img src="/assets/user/image/icon/payment.png">Thanh toán bằng tiền mặt khi nhận hàng
 						</label>
 					</div>
 					<p>
@@ -182,7 +206,7 @@
 					</p>
 					<div class="buttons">
 							<div class="pull-left">
-								<input type="button" value="Trở lại" onclick="transferAddress()"
+								<input type="button" value="Trở lại" onclick="transferTransport()"
 								class="btn btn-primary">
 							</div>
 							<div class="pull-right">
@@ -198,7 +222,7 @@
 				<h4 class="panel-title" id="txtConfirm">
 					<a href="#collapse-checkout-confirm" data-toggle="collapse"
 						id="btnConfirm" data-parent="#accordion" class="accordion-toggle"
-						aria-expanded="true">Bước 4: Xác nhận đơn hàng <i
+						aria-expanded="true"><strong>Bước 4: Xác nhận đơn hàng</strong> <i
 						class="fa fa-caret-down"></i></a>
 				</h4>
 			</div>
@@ -235,7 +259,7 @@
 								<tr>
 									<td colspan="4" class="text-right cart-total-title">Phí
 										Vận Chuyển:</td>
-									<td class="text-right cart-total-price">50.000</td>
+									<td class="text-right cart-total-price"><span id="shipping-fee-price">18.000</span></td>
 								</tr>
 								<tr>
 									<td colspan="4" class="text-right cart-total-title">Mã
@@ -245,8 +269,8 @@
 								<tr>
 									<td colspan="4" class="text-right cart-total-title">Tổng
 										Tiền:</td>
-									<td class="text-right cart-total-price">[[${#numbers.formatInteger(cart.amount
-										+ 50000,cart.amount==0?0:3,'POINT')}]]</td>
+									<td class="text-right cart-total-price"><span id ="total-price">[[${#numbers.formatInteger(cart.amount
+									,cart.amount==0?0:3,'POINT')}]]</span></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -258,13 +282,9 @@
 							</div>
 						
 							<div class="pull-right">
-								<input type="submit" value="Đặt hàng" id="button-confirm"
-									class="btn btn-primary">
-								<!-- <button type="submit" th:formaction="@{/shop/cart/checkout}" formmethod="post" class="btn btn-primary" id="button-confirm">
-								Đặt hàng
-							</button> -->
+								<input type="submit" value="Đặt hàng" id="button-confirm" class="btn btn-primary">
 							</div>
-						
+							<input type="hidden" name="total_price" id="total-price-input">
 					</div>
 				</div>
 			</div>
@@ -272,3 +292,35 @@
 	</div>
 	</form>
 </div>
+<script>
+function checkShippingFee() {
+  var select = document.getElementsByName("address_id")[0];
+  var value = select.options[select.selectedIndex].value;
+
+  var province = "";
+  for (var i = 0; i < select.options.length; i++) {
+    if (select.options[i].selected) {
+      province = select.options[i].getAttribute("data-province");
+    }
+  }
+
+  var radio = document.getElementsByName("shipping_fee")[0];
+  var shippingFee = 0;
+  if (province === "Hồ Chí Minh") {
+    radio.value = 18000;
+    shippingFee = 18000;
+    document.getElementById("shipping-fee").innerHTML = "18.000 đ";
+    document.getElementById("shipping-fee-price").innerHTML = "18.000";
+    document.getElementById("total-price").innerHTML = "[[${#numbers.formatInteger(cart.amount + 18000,cart.amount==0?0:3,'POINT')}]]";
+    document.getElementById("total-price-input").value = "[[${#numbers.formatInteger(cart.amount + 18000,cart.amount==0?0:3,'POINT')}]]".replace(/\./g,'');
+  } else {
+    radio.value = 30000;
+    shippingFee = 30000;
+    document.getElementById("shipping-fee").innerHTML = "30.000 đ";
+    document.getElementById("shipping-fee-price").innerHTML = "30.000";
+    document.getElementById("total-price").innerHTML = "[[${#numbers.formatInteger(cart.amount + 30000,cart.amount==0?0:3,'POINT')}]]";
+    document.getElementById("total-price-input").value = "[[${#numbers.formatInteger(cart.amount + 30000,cart.amount==0?0:3,'POINT')}]]".replace(/\./g,'');
+  }
+}
+checkShippingFee();
+</script>

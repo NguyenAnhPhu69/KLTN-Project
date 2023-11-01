@@ -17,7 +17,7 @@ import poly.store.model.InformationModel;
 /**
  * Class cung cap cac dich vu thao tac voi table Users trong database
  * 
- * @author KHOA-PH
+ * @author phu-ute
  * @version 1.00
  */
 public interface UserService {

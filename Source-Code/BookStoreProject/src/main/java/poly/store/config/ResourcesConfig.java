@@ -16,7 +16,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 /**
  * Class chua cac cau hinh cho he thong
  * 
- * @author khoa-ph
+ * @author phu-ute
  * @version 1.00
  */
 @Configuration
