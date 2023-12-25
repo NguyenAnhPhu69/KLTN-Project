@@ -1,5 +1,5 @@
-# Project Tiểu Luận Chuyên Ngành
-## Tên đề tài: Xây dựng website bán sách với Java Spring Boot
+# Project Khóa Luận Tốt Nghiệp
+## Tên đề tài: Xây dựng Website bán sách trực tuyến
 ## Nhóm:
 1. Nguyễn Anh Phú-19110429
 2. Trịnh Ngọc Khánh-19110377
